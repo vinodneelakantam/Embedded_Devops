@@ -1,0 +1,20 @@
+FROM zephyrprojectrtos/zephyr:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Zephyr application source code
+COPY ../apps/zephyr_app /app
+
+# Install required packages for building the Zephyr application
+RUN apt-get update && \
+    apt-get install -y west && \
+    west init zephyrproject && \
+    cd zephyrproject && \
+    west update
+
+# Build the Zephyr application
+RUN west build -b <your_board> zephyr_app
+
+# Command to run the application
+CMD ["./build/zephyr/zephyr.elf"]

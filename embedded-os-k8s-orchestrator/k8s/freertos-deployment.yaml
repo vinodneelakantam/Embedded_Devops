@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freertos-app
+  labels:
+    app: freertos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: freertos
+  template:
+    metadata:
+      labels:
+        app: freertos
+    spec:
+      containers:
+      - name: freertos-container
+        image: freertos-image:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ENV_VAR_NAME
+          value: "value"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"

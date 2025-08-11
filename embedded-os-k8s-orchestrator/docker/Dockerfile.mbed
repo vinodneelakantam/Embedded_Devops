@@ -1,0 +1,16 @@
+FROM mbed/mbed-os:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Mbed application source code
+COPY ./apps/mbed_app /app
+
+# Install dependencies (if any)
+# RUN mbed deploy
+
+# Build the Mbed application
+RUN mbed compile -t GCC_ARM -m NUCLEO_F401RE
+
+# Command to run the application (modify as needed)
+CMD ["./BUILD/NUCLEO_F401RE/GCC_ARM/mbed-os-example/main"]

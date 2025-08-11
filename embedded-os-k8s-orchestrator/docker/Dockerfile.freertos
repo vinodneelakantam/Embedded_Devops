@@ -1,0 +1,16 @@
+FROM freertos/freertos:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the FreeRTOS application source code
+COPY ../apps/freertos_app/ .
+
+# Install necessary dependencies (if any)
+# RUN apt-get update && apt-get install -y <dependencies>
+
+# Build the FreeRTOS application using CMake
+RUN cmake . && make
+
+# Command to run the application
+CMD ["./freertos_app"]
