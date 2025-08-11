@@ -1,4 +1,4 @@
-FROM mbed/mbed-os:latest
+FROM ubuntu:24.04
 
 # Set the working directory
 WORKDIR /app
